@@ -1,7 +1,10 @@
 #cloud-config
 packages:
-  - perl
   - tzdata
   - postfix
 
+runcmd:
+  - |
+    curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+    
 final_message: "GitLab configuration completed successfully"
