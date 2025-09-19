@@ -1,5 +1,8 @@
 #cloud-config
+include:
+  - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/linux-common.yaml
 packages:
+  - curl
   - tzdata
   - postfix
 
