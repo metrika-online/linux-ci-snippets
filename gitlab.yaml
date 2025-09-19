@@ -1,0 +1,7 @@
+#cloud-config
+packages:
+  - perl
+  - tzdata
+  - postfix
+
+final_message: "GitLab configuration completed successfully"
