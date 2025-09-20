@@ -1,0 +1,5 @@
+#include
+https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/debian13.yaml
+https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/gitlab-debian12.yaml
+
+final_message: "All configurations including GitLab completed successfully"
