@@ -1,13 +1,23 @@
 #cloud-config
+
+# Сначала загружаем основной конфиг
+merge_how:
+ - name: list
+   settings: [append]
+ - name: dict
+   settings: [no_replace, recurse_list]
+
+datasource:
+  NoCloud:
+    user-data:
+      - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
+
+# Затем добавляем специфичные для GitLab настройки
 packages:
-  - ca-certificates
-  - apt-transport-https
   - tzdata
-  - curl
-  - gnupg
 
 runcmd:
   - curl -fsSL "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey" | sudo gpg --dearmor -o /usr/share/keyrings/gitlab-archive-keyring.gpg
   - echo "deb [signed-by=/usr/share/keyrings/gitlab-archive-keyring.gpg] https://packages.gitlab.com/gitlab/gitlab-ce/debian bookworm main" | sudo tee /etc/apt/sources.list.d/gitlab_gitlab-ce.list
 
-final_message: "Gitlab configuration completed successfully"
+final_message: "GitLab configuration completed successfully"
