@@ -43,7 +43,7 @@ packages:
   - iftop
   - smem
   # cloud utils
-  - cloud-init
+  - qemu-guest-agent
 
 
 ansible:
