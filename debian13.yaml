@@ -52,9 +52,9 @@ bootcmd:
     DISK_DEV="/dev/disk/by-id/${DISK_ID}"
     PARTITION_DEV="${DISK_DEV}-part1"
     
-    if [ -b "${DISK_DEV}" ] && ! parted "${DISK_DEV}" print >/dev/null 2>&1; then
-      parted "${DISK_DEV}" mklabel gpt --script
-      parted "${DISK_DEV}" mkpart primary 0% 100% --script
+    if [ -b "${DISK_DEV}" ] && ! lsblk "${DISK_DEV}" | grep -q "part" 2>/dev/null; then
+      # Создаем раздел с помощью fdisk через перенаправление ввода
+      echo -e "g\nn\n1\n\n\nw" | fdisk "${DISK_DEV}"
       pvcreate "${PARTITION_DEV}"
       vgcreate vg_data "${PARTITION_DEV}"
       lvcreate -n lv_data -l 100%FREE vg_data
