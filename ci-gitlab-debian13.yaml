@@ -13,7 +13,7 @@ merge_type:
 
 datasource:
   NoCloud:
-    user-data:
+    vendor-data:
       - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
       - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-gitlab-deb.yaml
 

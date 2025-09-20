@@ -1,15 +1,4 @@
 #cloud-config
-merge_how:
- - name: list
-   settings: [append]
- - name: dict
-   settings: [no_replace, recurse_list]
-
-datasource:
-  NoCloud:
-    vendor-data:
-      - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
-
 packages:
   - tzdata
   - ca-certificates
