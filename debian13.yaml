@@ -56,7 +56,7 @@ bootcmd:
       # Создаем GPT таблицу и раздел на всем диске
       echo 'label: gpt
       ,,' | sfdisk "${DISK_DEV}"
-            
+      sleep 5
       # Проверяем, что раздел создался
       if [ -b "${PARTITION_DEV}" ]; then
         # Создаем LVM на созданном разделе
