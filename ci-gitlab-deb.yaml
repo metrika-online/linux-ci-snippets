@@ -1,4 +1,10 @@
 #cloud-config
+packages:
+  - ca-certificates
+  - apt-transport-https
+  - tzdata
+  - curl
+  - gnupg
 
 runcmd:
   - curl -fsSL "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey" | sudo gpg --dearmor -o /usr/share/keyrings/gitlab-archive-keyring.gpg
