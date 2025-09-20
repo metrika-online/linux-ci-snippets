@@ -49,9 +49,9 @@ packages:
 ansible:
   package_name: ansible-core
   install_method: distro
-    pull:
-      - url: https://github.com/metrika-online/linux-common.git
-        playbook_names: local.yaml
+  pull:
+    - url: https://github.com/metrika-online/linux-common.git
+      playbook_names: local.yaml
 
 #runcmd:
 #  - |
