@@ -52,15 +52,20 @@ bootcmd:
     DISK_DEV="/dev/disk/by-id/${DISK_ID}"
     PARTITION_DEV="${DISK_DEV}-part1"
     
-    if [ -b "${DISK_DEV}" ] && ! lsblk "${DISK_DEV}" | grep -q "part" 2>/dev/null; then
-      # Создаем раздел с помощью fdisk через перенаправление ввода
-      echo -e "g\nn\n1\n\n\nw" | fdisk "${DISK_DEV}"
-      pvcreate "${PARTITION_DEV}"
-      vgcreate vg_data "${PARTITION_DEV}"
-      lvcreate -n lv_data -l 100%FREE vg_data
-      mkfs.xfs /dev/vg_data/lv_data
+    if [ -b "${DISK_DEV}" ] && ! [ -b "${PARTITION_DEV}" ]; then
+      # Создаем GPT таблицу и раздел на всем диске
+      echo 'label: gpt
+      ,,' | sfdisk "${DISK_DEV}"
+            
+      # Проверяем, что раздел создался
+      if [ -b "${PARTITION_DEV}" ]; then
+        # Создаем LVM на созданном разделе
+        pvcreate "${PARTITION_DEV}"
+        vgcreate vg_data "${PARTITION_DEV}"
+        lvcreate -n lv_data -l 100%FREE vg_data
+        mkfs.xfs /dev/vg_data/lv_data -f
+      fi
     fi
-
 runcmd:
   - ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml
   - echo '*/30 * * * * root ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml' > /etc/cron.d/ansible-pull-updates
