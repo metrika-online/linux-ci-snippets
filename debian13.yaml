@@ -45,17 +45,9 @@ packages:
   - qemu-guest-agent
   - ansible 
 
-
-ansible:
-  package_name: ansible-core
-  install_method: distro
-  pull:
-    - url: https://github.com/metrika-online/linux-common.git
-      playbook_names: local.yaml
-
-#runcmd:
-#  - |
-#    ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml
-#    echo '*/30 * * * * root ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml | sudo tee /etc/cron.d/ansible-pull-updates
+runcmd:
+  - |
+    ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml
+    echo '*/30 * * * * root ansible-pull -U https://github.com/metrika-online/linux-common.git local.yaml | sudo tee /etc/cron.d/ansible-pull-updates
 
 final_message: "Linux common configuration completed successfully"
