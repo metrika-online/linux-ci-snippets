@@ -26,7 +26,6 @@ packages:
   - tcpdump
   - nmap
   - traceroute
-  - dnsutils
   # disk utils
   - tree
   - unzip
