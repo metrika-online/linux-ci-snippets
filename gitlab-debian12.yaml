@@ -1,8 +1,13 @@
 #cloud-config
+package_update: true
+package_upgrade: all
+
+packages:
+  - curl
 
 runcmd:
   - curl -fsSL "https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/debian13.yaml" | cloud-init --file - modules --mode config
   - curl -fsSL "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey" | sudo gpg --dearmor -o /usr/share/keyrings/gitlab-archive-keyring.gpg
   - echo "deb [signed-by=/usr/share/keyrings/gitlab-archive-keyring.gpg] https://packages.gitlab.com/gitlab/gitlab-ce/debian bookworm main" | sudo tee /etc/apt/sources.list.d/gitlab_gitlab-ce.list
 
-final_message: "Linux common configuration completed successfully"
+final_message: "Linux gitlab configuration completed successfully"
