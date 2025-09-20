@@ -1,6 +1,4 @@
 #cloud-config
-
-# Сначала загружаем основной конфиг
 merge_how:
  - name: list
    settings: [append]
@@ -9,12 +7,15 @@ merge_how:
 
 datasource:
   NoCloud:
-    user-data:
+    vendor-data:
       - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
 
-# Затем добавляем специфичные для GitLab настройки
 packages:
   - tzdata
+  - ca-certificates
+  - apt-transport-https
+  - gnupg
+  - curl
 
 runcmd:
   - curl -fsSL "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey" | sudo gpg --dearmor -o /usr/share/keyrings/gitlab-archive-keyring.gpg
