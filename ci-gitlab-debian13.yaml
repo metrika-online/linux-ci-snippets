@@ -11,10 +11,8 @@ merge_type:
  - name: dict
    settings: [no_replace, recurse_list]
 
-datasource:
-  NoCloud:
-    user-data:
-      - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
-      - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-gitlab-deb.yaml
+include:
+  - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-debian13.yaml
+  - https://raw.githubusercontent.com/metrika-online/linux-ci-snippets/refs/heads/main/ci-gitlab-deb.yaml
 
 final_message: "All configurations including GitLab completed successfully"
