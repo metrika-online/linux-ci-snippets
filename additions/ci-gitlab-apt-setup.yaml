@@ -40,4 +40,5 @@ runcmd:
     gitlab_workhorse['proxy_protocol'] = true
     EOF
     gitlab-ctl reconfigure
+
 final_message: "GitLab configuration completed successfully"

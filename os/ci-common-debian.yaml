@@ -9,48 +9,8 @@ package_update: true
 package_upgrade: all
 
 packages:
-  # base utils
-  - sudo
-  - bash-completion
-  - less
-  - jq
-  - curl
-  - wget
-  - gnupg2
-  # system utils
-  - tmux
-  - vim
-  - mc
-  - ca-certificates
-  - logrotate
   - git
-  - chrony
-  - apt-transport-https
-  - unattended-upgrades
-  # netwok utils
-  - iproute2
-  - tcpdump
-  - nmap
-  - traceroute
-  # disk utils
-  - tree
-  - unzip
-  - rsync
-  - parted
-  - lvm2
-  - xfsprogs
-  # monitroing utils
-  - sysstat
-  - strace
-  - lsof
-  - htop
-  - iotop
-  - iftop
-  - smem
-  # cloud utils
-  - qemu-guest-agent
   - ansible
-  - cloud-guest-utils
 
 bootcmd:
   - |
